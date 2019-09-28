@@ -1,10 +1,10 @@
-# template-module
-Default template for server-base modules
+# system information module
+A module to view characteristics of your system
 
 This output generates a straight base to provide other applications useful information like server-state example [client-base](https://github.com/server-state/client-base).
 
 ### Checklist for using this template
-- [ ] Change name and description in this README
+- [x] Change name and description in this README
 - [ ] Change the package name in the `package.json`
 - [ ] Change the repository, issue and other urls as well as the `author` field in the `package.json`, as needed
 - [ ] Familiarize yourself with the specifications for modules, which can be found in https://github.com/server-state/specs.
@@ -39,3 +39,4 @@ This output generates a straight base to provide other applications useful infor
 ---
 
 This official module belongs to the organization [server-state](https://github.com/server-state).
+ 
