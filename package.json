@@ -1,5 +1,5 @@
 {
-  "name": "system-information-module",
+  "name": "@server-state/system-information-module",
   "version": "0.0.9",
   "description": "A module to view characteristics of your system",
   "main": "index.js",
