@@ -8,5 +8,6 @@ module.exports = {
     module: {
     },
     externals: {
+        systeminformation: 'systeminformation'
     }
 };
