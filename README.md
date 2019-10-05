@@ -12,14 +12,14 @@ This output generates a straight base to provide other applications useful infor
 **Afterwards**
 - [x] Write source code for your module in the `src` module
 - [x] Adjust the existing test in `tests/001-basic.test.js` so that your *SMF* gets passed the necessery parameters and has the necessary mocks to pass. **Do not delete this test!** It is vital that the data you return is JSON-serializable and therefore, this test is required.
-- [ ] Write tests for your code (until you reach 100 % coverage, this has to get trusted to get deployed to production servers) in the tests folder
+- [x] Write tests for your code (until you reach 100 % coverage, this has to get trusted to get deployed to production servers) in the tests folder
 
 **Afterwards**
 - [x] Add all dependencies **you** have added as externals in the `webpack.config.js`
-- [ ] Run `npm run lint` (fix any errors that get shown)
-- [ ] Run `npm run test` (fix any errors that might occur)
-- [ ] Run `npm run build` (fix any errors that might occur)
-- [ ] Test by running `node` in the repo directory and requiring the module with `require('.')`. You can then test it interactively.
+- [x] Run `npm run lint` (fix any errors that get shown)
+- [x] Run `npm run test` (fix any errors that might occur)
+- [x] Run `npm run build` (fix any errors that might occur)
+- [x] Test by running `node` in the repo directory and requiring the module with `require('.')`. You can then test it interactively.
 - [ ] Publish as `v0.0.9` to npm to ensure CI can publish in the future (use `--access=public` for scoped packages
 - [ ] Bump version number in `package.json` to `0.1.0`, commit and push to GitHub
 - [ ] Add `gh_token` and `npm_token` to the GitHub repo secrets to allow CI publishing
