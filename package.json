@@ -3,7 +3,6 @@
   "version": "0.0.9",
   "description": "A module to view characteristics of your system",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "test": "jest --coverage",
     "lint": "eslint ./src ./tests",
