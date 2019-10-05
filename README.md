@@ -8,7 +8,8 @@
 
 ### Description
 
-A module to view characteristics of your system. Its response is a object containing keys named after the request functions from the [systeminformation module](https://www.npmjs.com/package/systeminformation) from npm defined before in [SMF](https://github.com/server-state/specs/blob/master/terminology/server-module-function.md) options with another object as the return value from the systeminformation function.
+A module to view characteristics of your system. \
+Its response is a object containing keys named after the request functions from the [systeminformation module](https://www.npmjs.com/package/systeminformation). The output can be defined before in [SMF](https://github.com/server-state/specs/blob/master/terminology/server-module-function.md) options with another object as the return value from the systeminformation function. \
 Here is a example for a request to CPU and memory information:
 ```json
 {
@@ -92,11 +93,11 @@ This results in the following output:
 
 ### Options
 
-You can adjust the result of this module in the options as an object.
-These object contains key-value pairs. The key defines the function based the [systeminformation reference](https://www.npmjs.com/package/systeminformation#reference) to call and the value as type of array defines the filter.
+You can adjust the result of this module in the options as an object. \
+These object contains key-value pairs. The key defines the function based the [systeminformation reference](https://www.npmjs.com/package/systeminformation#reference) to call and the value as type of array defines the filter. \
 If the array or filter is empty, the result from the 'si'-function will be returned.
-If the array contains strings, the result object from the 'si'-function is filtered by the defined filter.
-For example, if you only want the number of cores from your CPU, a option object could look like:
+If the array contains strings that bases on the resulting key names in the object, the result object from the 'si'-function is filtered by the defined key names. \
+For example, if you only want the number of cores from your CPU, an option object could look like:
 ```js
 const options = {
     cpu: ['cores']
