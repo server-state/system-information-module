@@ -1,42 +1,118 @@
 # system information module
-A module to view characteristics of your system
+
+[![Build Status](https://travis-ci.com/server-state/system-information-module.svg?branch=master)](https://travis-ci.com/server-state/system-information-module)
+![GitHub](https://img.shields.io/github/license/server-state/system-information-module)
+[![npm version](https://badge.fury.io/js/%40server-state%2Fsystem-information-module.svg)](https://badge.fury.io/js/%40server-state%2Fsystem-information-module)
+[![Coverage Status](https://coveralls.io/repos/github/server-state/system-information-module/badge.svg?branch=master)](https://coveralls.io/github/server-state/system-information-module?branch=master)
+![module type: official](https://img.shields.io/badge/module%20type-official-%23015ba0)
+
+### Description
+
+A module to view characteristics of your system. Its response is a object containing keys named after the request functions from the [systeminformation module](https://www.npmjs.com/package/systeminformation) from npm defined before in [SMF](https://github.com/server-state/specs/blob/master/terminology/server-module-function.md) options with another object as the return value from the systeminformation function.
+Here is a example for a request to CPU and memory information:
+```json
+{
+  "cpu": {
+    "manufacturer": "Intel®",
+    "brand": "Core™ i7-8250U",
+    "vendor": "GenuineIntel",
+    "family": "6",
+    "model": "142",
+    "stepping": "10",
+    "revision": "",
+    "voltage": "",
+    "speed": "1.60",
+    "speedmin": "0.40",
+    "speedmax": "3.40",
+    "cores": 8,
+    "physicalCores": 4,
+    "processors": 1,
+    "socket": "",
+    "cache": {
+      "l1d": 131072,
+      "l1i": 131072,
+      "l2": 1,
+      "l3": 8
+    }
+  },
+  "mem": {
+    "total": 16677117952,
+    "free": 7204421632,
+    "used": 9472696320,
+    "active": 5442600960,
+    "available": 11642912768,
+    "buffcache": 4030095360,
+    "swaptotal": 8589930496,
+    "swapused": 9072640,
+    "swapfree": 8580857856
+  }
+}
+```
+
+You can simply add this module with the [server-base](https://github.com/server-state/server-base) function and your specific options, for example:
+```js
+server.addModule('system-information', require('@server-state/system-information-module'), {
+    cpu: [],
+    mem: ['free']
+});
+```
+
+to your current api server.
+This results in the following output:
+```json
+{
+  "cpu": {
+    "manufacturer": "Intel®",
+    "brand": "Core™ i7-8250U",
+    "vendor": "GenuineIntel",
+    "family": "6",
+    "model": "142",
+    "stepping": "10",
+    "revision": "",
+    "voltage": "",
+    "speed": "1.60",
+    "speedmin": "0.40",
+    "speedmax": "3.40",
+    "cores": 8,
+    "physicalCores": 4,
+    "processors": 1,
+    "socket": "",
+    "cache": {
+      "l1d": 131072,
+      "l1i": 131072,
+      "l2": 1,
+      "l3": 8
+    }
+  },
+  "mem": {
+    "free": 7204421632
+  }
+}
+```
+
+### Options
+
+You can adjust the result of this module in the options as an object.
+These object contains key-value pairs. The key defines the function based the [systeminformation reference](https://www.npmjs.com/package/systeminformation#reference) to call and the value as type of array defines the filter.
+If the array or filter is empty, the result from the 'si'-function will be returned.
+If the array contains strings, the result object from the 'si'-function is filtered by the defined filter.
+For example, if you only want the number of cores from your CPU, a option object could look like:
+```js
+const options = {
+    cpu: ['cores']
+};
+```
+And the result defined by this option could look like: 
+```json
+{
+  "cpu": {
+    "cores": 4
+  }
+}
+```
+
+### About
 
 This output generates a straight base to provide other applications useful information like server-state example [client-base](https://github.com/server-state/client-base).
 
-### Checklist for using this template
-- [x] Change name and description in this README
-- [x] Change the package name in the `package.json`
-- [x] Change the repository, issue and other urls as well as the `author` field in the `package.json`, as needed
-- [x] Familiarize yourself with the specifications for modules, which can be found in https://github.com/server-state/specs.
-
-**Afterwards**
-- [x] Write source code for your module in the `src` module
-- [x] Adjust the existing test in `tests/001-basic.test.js` so that your *SMF* gets passed the necessery parameters and has the necessary mocks to pass. **Do not delete this test!** It is vital that the data you return is JSON-serializable and therefore, this test is required.
-- [x] Write tests for your code (until you reach 100 % coverage, this has to get trusted to get deployed to production servers) in the tests folder
-
-**Afterwards**
-- [x] Add all dependencies **you** have added as externals in the `webpack.config.js`
-- [x] Run `npm run lint` (fix any errors that get shown)
-- [x] Run `npm run test` (fix any errors that might occur)
-- [x] Run `npm run build` (fix any errors that might occur)
-- [x] Test by running `node` in the repo directory and requiring the module with `require('.')`. You can then test it interactively.
-- [ ] Publish as `v0.0.9` to npm to ensure CI can publish in the future (use `--access=public` for scoped packages
-- [ ] Bump version number in `package.json` to `0.1.0`, commit and push to GitHub
-- [ ] Add `gh_token` and `npm_token` to the GitHub repo secrets to allow CI publishing
-- [ ] Add a tag called `v0.1.0` and push it to GitHub
-- [ ] Watch GitHub actions publish the new version for you :wink:
-
-**For every new version**
-- [ ] Add all dependencies **you** have added as externals in the `webpack.config.js`
-- [ ] Run `npm run lint` (fix any errors that get shown)
-- [ ] Run `npm run test` (fix any errors that might occur)
-- [ ] Run `npm run build` (fix any errors that might occur)
-- [ ] Test by running `node` in the repo directory and requiring the module with `require('.')`. You can then test it interactively.
-- [ ] Bump version number in `package.json`
-- [ ] Add a tag called `v[package.json version number]` and push it to GitHub
-- [ ] Watch GitHub actions publish the new version for you :wink:
-
----
-
 This official module belongs to the organization [server-state](https://github.com/server-state).
- 
