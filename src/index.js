@@ -21,7 +21,7 @@ module.exports = async function(options) {
 
     for (const [key, value] of Object.entries(options)) {
         if (typeof si[key] !== 'function')
-            throw new Error('The function \'' + key + '\' is not available is the systeminformation package.');
+            throw new Error('The function \'' + key + '\' is not available in the systeminformation package.');
         
         const info = await si[key]();
 
