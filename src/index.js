@@ -9,8 +9,8 @@ const si = require('systeminformation');
  * @throws if the key in options is not a function of the systeminformation module
  * @throws if an invalid filter is given for the specified function
  * 
- * @argument options object with functions for the systeminformation module to check as keys and 
- *                   arrays as filters for these functions
+ * @param {object} options object with functions for the systeminformation module to check as keys and 
+ *        arrays as filters for these functions
  * @returns {object} A JSON-serializable (via `JSON.stringify()`) version information about the server state
  */
 module.exports = async function(options) {
