@@ -1,6 +1,6 @@
 {
   "name": "@server-state/system-information-module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A module to view characteristics of your system",
   "main": "index.js",
   "scripts": {
@@ -19,13 +19,13 @@
   },
   "homepage": "https://github.com/server-state/system-information-module#readme",
   "devDependencies": {
-    "coveralls": "^3.0.6",
-    "eslint": "^6.3.0",
-    "jest": "^24.9.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "coveralls": "^3.0.11",
+    "eslint": "^6.8.0",
+    "jest": "^25.2.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "systeminformation": "^4.14.11"
+    "systeminformation": "^4.23.1"
   }
 }
