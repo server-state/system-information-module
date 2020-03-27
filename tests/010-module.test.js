@@ -65,19 +65,19 @@ const PASS_WITH_OPTIONS = [
         'correct function name and no filtering',  // description
         { system: [] },  // option argument
         DEFAULT_SYSTEM_MOCK,  // mocked return value of systeminformation
-        { system: DEFAULT_SYSTEM_MOCK }   // expected return object
+        { _fields: ['system'], system: DEFAULT_SYSTEM_MOCK }  // expected return object
     ],
     [
         'correct function name and 1 filtered result',
         { system: ['manufacturer'] },
         DEFAULT_SYSTEM_MOCK,
-        { system: { manufacturer: DEFAULT_SYSTEM_MOCK['manufacturer'] } }
+        { _fields: ['system'], system: { manufacturer: DEFAULT_SYSTEM_MOCK['manufacturer'] } }
     ],
     [
         'correct function name and 2 filtered results',
         { system: ['manufacturer', 'version'] },
         DEFAULT_SYSTEM_MOCK,
-        { system: { manufacturer: DEFAULT_SYSTEM_MOCK['manufacturer'], version: DEFAULT_SYSTEM_MOCK['version'] } }
+        { _fields: ['system'], system: { manufacturer: DEFAULT_SYSTEM_MOCK['manufacturer'], version: DEFAULT_SYSTEM_MOCK['version'] } }
     ]
 ];
 
@@ -88,7 +88,7 @@ describe('Test systeminformation calls and filtering', () => {
 
     it('should pass when a function name is given that is available in the systeminformation package', async () => {
         systeminformation.system.mockResolvedValue(DEFAULT_SYSTEM_MOCK);
-        expect(await serverModule({ system: [] })).toMatchObject({ system: DEFAULT_SYSTEM_MOCK });
+        expect(await serverModule({ system: [] })).toMatchObject({ _fields: ['system'], system: DEFAULT_SYSTEM_MOCK });
         expect(systeminformation.system).toHaveBeenCalled();
     });
 
@@ -115,6 +115,10 @@ describe('Test systeminformation calls and filtering', () => {
         const result = await serverModule({ system: [], mem: [] });
 
         expect(result).toMatchObject({
+            _fields: [
+                'system',
+                'mem'
+            ],
             system: DEFAULT_SYSTEM_MOCK,
             mem: DEFAULT_MEM_MOCK
         });
@@ -129,6 +133,10 @@ describe('Test systeminformation calls and filtering', () => {
         const result = await serverModule({ system: ['uuid'], mem: ['free'] });
 
         expect(result).toMatchObject({
+            _fields: [
+                'system',
+                'mem'
+            ],
             system: {
                 uuid: DEFAULT_SYSTEM_MOCK['uuid']
             },
